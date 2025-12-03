@@ -20,12 +20,12 @@
     style="display: none"
   >
     <div class="flex flex-col">
-      <div class="flex-1 flex flex-col">
+      <div class="flex-1 flex flex-col justify-center">
         <div
-          class="mx-auto flex w-full max-w-3xl flex-1 flex-col px-10 py-8 justify-center"
+          class="mx-auto flex w-full max-w-3xl flex-1 flex-col px-10 py-8 justify-center max-h-[85vh] overflow-hidden"
         >
           <div
-            class="bg-gradient-to-r from-rose-500 to-amber-400 text-center overflow-hidden rounded-t-3xl"
+            class="bg-gradient-to-r from-rose-500 to-amber-400 text-center overflow-hidden rounded-t-3xl shrink-0"
           >
             <div class="p-10 pt-12">
               <h1
@@ -36,9 +36,11 @@
             </div>
           </div>
           <div
-            class="flex flex-col gap-6 p-6 border border-t-none rounded-b-3xl border-slate-200"
+            class="flex gap-6 p-6 border border-t-none rounded-b-3xl border-slate-200"
           >
-            <section class="rounded-lg border border-slate-200 bg-white p-6">
+            <section
+              class="rounded-lg border border-slate-200 bg-white p-6 flex-1 flex flex-col"
+            >
               <div class="flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <p class="text-sm font-medium text-slate-600">
@@ -46,11 +48,8 @@
                   </p>
                   <h2 class="text-2xl font-medium text-slate-800">Top 3</h2>
                 </div>
-                <p class="text-sm text-slate-600">
-                  12 total tasks · 68% complete
-                </p>
               </div>
-              <ol class="mt-4 space-y-4">
+              <ol class="mt-4 space-y-4 flex-1">
                 <li class="flex gap-3">
                   <span class="text-sm font-medium text-slate-600">1.</span>
                   <div>
@@ -86,16 +85,16 @@
                 </li>
               </ol>
             </section>
-            <div class="grid gap-6 md:grid-cols-2">
+            <div class="flex-1 flex flex-col gap-6">
               <section class="rounded-lg border border-slate-200 bg-white p-6">
                 <p class="text-sm font-medium text-slate-600">
                   Todo statistics
                 </p>
-                <div class="mt-4 flex items-baseline gap-3">
+                <div class="flex items-baseline gap-3">
                   <span class="text-2xl font-medium text-slate-800">8</span>
                   <span class="text-sm text-slate-600">completed tasks</span>
                 </div>
-                <div class="mt-4 flex gap-6">
+                <div class="flex gap-6 mt-2">
                   <div>
                     <p class="text-sm text-slate-600">Remaining</p>
                     <p class="font-medium text-slate-800">3 tasks</p>
@@ -106,16 +105,15 @@
                   </div>
                 </div>
               </section>
-
               <section class="rounded-lg border border-slate-200 bg-white p-6">
                 <p class="text-sm font-medium text-slate-600">Chat interface</p>
-                <div class="mt-4 flex items-baseline gap-3">
+                <div class="flex items-baseline gap-3">
                   <span class="text-2xl font-medium text-slate-800">42</span>
                   <span class="text-sm text-slate-600"
                     >messages sent today</span
                   >
                 </div>
-                <div class="mt-4 flex gap-6">
+                <div class="flex gap-6 mt-2">
                   <div>
                     <p class="text-sm text-slate-600">Active threads</p>
                     <p class="font-medium text-slate-800">5</p>
