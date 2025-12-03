@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>index.html</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <script>
+      window.rootPrefix = /^\/(files|preview)\//.test(location.pathname)
+        ? location.pathname.split('/').slice(0, 4).join('/')
+        : '/';
+    </script>
+    <script type="module" src="../webfoundry/ifdesigner.js"></script>
+    <script src="../webfoundry/head.js"></script>
+  </head>
+  <body
+    class="flex flex-col [&amp;&gt;div:first-child]:flex-1 min-h-screen"
+    style="display: none"
+  >
+    <div class="flex flex-col">
+      <div class="flex-1 flex flex-col">
+        <div
+          class="mx-auto flex w-full max-w-3xl flex-1 flex-col px-10 py-8 justify-center"
+        >
+          <div
+            class="bg-gradient-to-r from-rose-500 to-amber-400 text-center overflow-hidden rounded-t-3xl"
+          >
+            <div class="p-10 pt-12">
+              <h1
+                class="text-5xl font-light uppercase tracking-[0.4em] text-white"
+              >
+                Stats
+              </h1>
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-6 p-6 border border-t-none rounded-b-3xl border-slate-200"
+          >
+            <section class="rounded-lg border border-slate-200 bg-white p-6">
+              <div class="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                  <p class="text-sm font-medium text-slate-600">
+                    Todo Overview
+                  </p>
+                  <h2 class="text-2xl font-medium text-slate-800">Top 3</h2>
+                </div>
+                <p class="text-sm text-slate-600">
+                  12 total tasks · 68% complete
+                </p>
+              </div>
+              <ol class="mt-4 space-y-4">
+                <li class="flex gap-3">
+                  <span class="text-sm font-medium text-slate-600">1.</span>
+                  <div>
+                    <p class="font-medium text-slate-800">
+                      Design onboarding flow
+                    </p>
+                    <p class="text-sm text-slate-600">
+                      Due today · High priority
+                    </p>
+                  </div>
+                </li>
+                <li class="flex gap-3">
+                  <span class="text-sm font-medium text-slate-600">2.</span>
+                  <div>
+                    <p class="font-medium text-slate-800">
+                      QA checklist for sprint 14
+                    </p>
+                    <p class="text-sm text-slate-600">
+                      Due tomorrow · Blocked by API fix
+                    </p>
+                  </div>
+                </li>
+                <li class="flex gap-3">
+                  <span class="text-sm font-medium text-slate-600">3.</span>
+                  <div>
+                    <p class="font-medium text-slate-800">
+                      Schedule retro with core team
+                    </p>
+                    <p class="text-sm text-slate-600">
+                      Due Friday · Needs agenda draft
+                    </p>
+                  </div>
+                </li>
+              </ol>
+            </section>
+            <div class="grid gap-6 md:grid-cols-2">
+              <section class="rounded-lg border border-slate-200 bg-white p-6">
+                <p class="text-sm font-medium text-slate-600">
+                  Todo statistics
+                </p>
+                <div class="mt-4 flex items-baseline gap-3">
+                  <span class="text-2xl font-medium text-slate-800">8</span>
+                  <span class="text-sm text-slate-600">completed tasks</span>
+                </div>
+                <div class="mt-4 flex gap-6">
+                  <div>
+                    <p class="text-sm text-slate-600">Remaining</p>
+                    <p class="font-medium text-slate-800">3 tasks</p>
+                  </div>
+                  <div>
+                    <p class="text-sm text-slate-600">Overdue</p>
+                    <p class="font-medium text-rose-500">1 task</p>
+                  </div>
+                </div>
+              </section>
+
+              <section class="rounded-lg border border-slate-200 bg-white p-6">
+                <p class="text-sm font-medium text-slate-600">Chat interface</p>
+                <div class="mt-4 flex items-baseline gap-3">
+                  <span class="text-2xl font-medium text-slate-800">42</span>
+                  <span class="text-sm text-slate-600"
+                    >messages sent today</span
+                  >
+                </div>
+                <div class="mt-4 flex gap-6">
+                  <div>
+                    <p class="text-sm text-slate-600">Active threads</p>
+                    <p class="font-medium text-slate-800">5</p>
+                  </div>
+                  <div>
+                    <p class="text-sm text-slate-600">Avg. response</p>
+                    <p class="font-medium text-slate-800">2m 14s</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+      <header class="border-slate-200 bg-white border-t">
+        <div
+          class="mx-auto flex max-w-3xl items-center px-10 py-4 justify-center"
+        >
+          <nav
+            class="flex items-center gap-2 text-sm font-medium text-slate-600"
+          >
+            <a
+              href="#"
+              class="rounded-lg px-3 py-2 transition hover:bg-rose-50 hover:text-rose-500"
+              >Todos</a
+            ><a
+              href="#"
+              class="rounded-lg px-3 py-2 transition bg-rose-50 text-rose-500"
+              >Stats</a
+            >
+            <a
+              href="#"
+              class="rounded-lg px-3 py-2 transition hover:bg-rose-50 hover:text-rose-500"
+              >Chat</a
+            >
+          </nav>
+        </div>
+      </header>
+    </div>
+  </body>
+</html>

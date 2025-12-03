@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <script>
+      window.rootPrefix = /^\/(files|preview)\//.test(location.pathname)
+        ? location.pathname.split('/').slice(0, 4).join('/')
+        : '/';
+    </script>
+    <script type="module" src="../webfoundry/ifdesigner.js"></script>
+    <script src="../webfoundry/head.js"></script>
+  </head>
+  <body
+    class="flex flex-col [&amp;&gt;div:first-child]:flex-1 min-h-screen"
+    style="display: none"
+  >
+    <div class="flex flex-col">
+      <div class="flex-1 flex justify-center items-center">
+        <div
+          class="mx-auto flex w-full max-w-3xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl shadow-slate-400/30 ring-1 ring-slate-200 h-[80vh]"
+        >
+          <div class="bg-gradient-to-r from-rose-500 to-amber-400 text-center">
+            <div class="p-10 pt-12">
+              <h1
+                class="text-5xl font-light uppercase tracking-[0.4em] text-white"
+              >
+                Todos
+              </h1>
+              <label
+                class="mt-8 flex items-center gap-4 rounded-2xl bg-white/20 px-6 py-4 text-left shadow-inner backdrop-blur"
+              >
+                <input
+                  type="checkbox"
+                  class="h-5 w-5 rounded-full border-white/70 text-white accent-white"
+                  value="on"
+                />
+                <input
+                  type="text"
+                  placeholder="What needs to be done?"
+                  class="flex-1 bg-transparent text-lg font-light text-white placeholder-white/70 focus:outline-none"
+                  value=""
+                />
+                <input
+                  type="date"
+                  class="rounded-lg border border-white/70 bg-white/10 px-3 py-2 text-sm text-white focus:outline-none"
+                  value=""
+                />
+              </label>
+            </div>
+          </div>
+
+          <div class="flex-1 space-y-1 bg-slate-50 px-10 pb-10 pt-6">
+            <div
+              class="flex items-center gap-4 rounded-2xl bg-white px-6 py-4 shadow-sm"
+            >
+              <input
+                type="checkbox"
+                class="h-5 w-5 rounded-full border-slate-300 text-emerald-500 accent-emerald-500"
+                value="on"
+              />
+              <span class="flex-1 text-lg text-slate-700"
+                >Buy groceries for the week</span
+              >
+              <input
+                type="date"
+                value="2024-09-20"
+                class="w-36 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 focus:outline-none"
+              />
+              <button
+                class="text-slate-300 transition hover:text-rose-500"
+                value=""
+              >
+                ✕
+              </button>
+            </div>
+            <div
+              class="flex items-center gap-4 rounded-2xl bg-white px-6 py-4 shadow-sm"
+            >
+              <input
+                type="checkbox"
+                class="h-5 w-5 rounded-full border-slate-300 text-emerald-500 accent-emerald-500"
+                value="on"
+              />
+              <span class="flex-1 text-lg text-slate-400 line-through"
+                >Schedule annual dentist appointment</span
+              >
+              <input
+                type="date"
+                value="2024-09-05"
+                class="w-36 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 focus:outline-none"
+              />
+              <button
+                class="text-slate-300 transition hover:text-rose-500"
+                value=""
+              >
+                ✕
+              </button>
+            </div>
+            <div
+              class="flex items-center gap-4 rounded-2xl bg-white px-6 py-4 shadow-sm"
+            >
+              <input
+                type="checkbox"
+                class="h-5 w-5 rounded-full border-slate-300 text-emerald-500 accent-emerald-500"
+                value="on"
+              />
+              <span class="flex-1 text-lg text-slate-700"
+                >Finish Q3 project report</span
+              >
+              <input
+                type="date"
+                value="2024-09-25"
+                class="w-36 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 focus:outline-none"
+              />
+              <button
+                class="text-slate-300 transition hover:text-rose-500"
+                value=""
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-wrap items-center gap-4 border-t border-slate-100 bg-white px-10 py-6 text-sm text-slate-500"
+          >
+            <span class="text-slate-600">2 items left</span>
+            <div class="flex flex-1 justify-center gap-2 text-slate-500">
+              <button
+                class="rounded-lg border border-slate-200 px-3 py-1 font-medium text-slate-800"
+                value=""
+              >
+                All
+              </button>
+              <button
+                class="rounded-lg border border-transparent px-3 py-1 transition hover:border-slate-200 hover:text-slate-800"
+                value=""
+              >
+                Active
+              </button>
+              <button
+                class="rounded-lg border border-transparent px-3 py-1 transition hover:border-slate-200 hover:text-slate-800"
+                value=""
+              >
+                Completed
+              </button>
+            </div>
+            <button
+              class="rounded-lg border border-transparent px-3 py-1 text-rose-500 transition hover:border-rose-100 hover:bg-rose-50"
+              value=""
+            >
+              Clear completed
+            </button>
+          </div>
+        </div>
+      </div>
+      <header class="border-slate-200 bg-white border-t">
+        <div
+          class="mx-auto flex max-w-3xl items-center px-10 py-4 justify-center"
+        >
+          <nav
+            class="flex items-center gap-2 text-sm font-medium text-slate-600"
+          >
+            <a
+              href="#"
+              class="rounded-lg px-3 py-2 transition bg-rose-50 text-rose-500"
+              >Todos</a
+            ><a
+              href="#"
+              class="rounded-lg px-3 py-2 transition hover:bg-rose-50 hover:text-rose-500"
+              >Stats</a
+            >
+            <a
+              href="#"
+              class="rounded-lg px-3 py-2 transition hover:bg-rose-50 hover:text-rose-500"
+              >Chat</a
+            >
+          </nav>
+        </div>
+      </header>
+    </div>
+  </body>
+</html>
