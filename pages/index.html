@@ -31,26 +31,77 @@
               >
                 Todos
               </h1>
-              <label
-                class="mt-8 flex items-center gap-4 rounded-2xl bg-white/20 px-6 py-4 text-left shadow-inner backdrop-blur"
-              >
-                <input
-                  type="checkbox"
-                  class="h-5 w-5 rounded-full border-white/70 text-white accent-white"
-                  value="on"
-                />
-                <input
-                  type="text"
-                  placeholder="What needs to be done?"
-                  class="flex-1 bg-transparent text-lg font-light text-white placeholder-white/70 focus:outline-none"
-                  value=""
-                />
-                <input
-                  type="date"
-                  class="rounded-lg border border-white/70 bg-white/10 px-3 py-2 text-sm text-white focus:outline-none"
-                  value=""
-                />
-              </label>
+              <div>
+                <form
+                  class="mt-8 flex flex-col gap-4 rounded-2xl bg-white/20 px-6 py-4 text-left shadow-inner backdrop-blur h-16"
+                >
+                  <div class="flex flex-wrap items-center gap-4">
+                    <input
+                      type="checkbox"
+                      class="h-5 w-5 rounded-full border-white/70 text-white accent-white"
+                      value="on"
+                    />
+                    <input
+                      type="text"
+                      placeholder="What needs to be done?"
+                      class="flex-1 bg-transparent text-lg font-light text-white placeholder-white/70 focus:outline-none"
+                      value=""
+                    />
+                    <label
+                      class="flex cursor-pointer items-center gap-2 rounded-full border border-white/70 px-3 py-1 font-medium text-white transition hover:bg-white/10"
+                    >
+                      <input type="checkbox" class="hidden" value="on" />
+                      <div class="nf nf-cod-note"></div></label
+                    ><input
+                      type="date"
+                      class="rounded-lg px-3 py-2 text-sm text-white focus:outline-none bg-white/20"
+                      value=""
+                    />
+                  </div>
+                  <div
+                    id="todo-note-field"
+                    class="hidden flex flex-col gap-2 rounded-2xl border border-white/70 bg-white/10 px-4 py-3 text-white"
+                  >
+                    <label for="todo-note-text" class="text-sm font-medium"
+                      >Note</label
+                    >
+                    <input
+                      id="todo-note-text"
+                      type="text"
+                      placeholder="Add a note for this task"
+                      class="w-full rounded-lg bg-transparent px-3 py-2 text-sm font-light text-white placeholder-white/70 focus:outline-none"
+                      value=""
+                    />
+                  </div>
+                </form>
+                <form
+                  class="flex flex-col gap-4 rounded-2xl bg-white/20 px-6 py-4 text-left shadow-inner backdrop-blur mt-3 h-16 justify-center"
+                >
+                  <div class="flex flex-wrap items-center gap-4">
+                    <input
+                      type="text"
+                      class="flex-1 bg-transparent text-lg font-light text-white placeholder-white/70 focus:outline-none"
+                      value=""
+                      placeholder="Add a small note to this to-do..."
+                    />
+                  </div>
+                  <div
+                    id="todo-note-field"
+                    class="hidden flex flex-col gap-2 rounded-2xl border border-white/70 bg-white/10 px-4 py-3 text-white"
+                  >
+                    <label for="todo-note-text" class="text-sm font-medium"
+                      >Note</label
+                    >
+                    <input
+                      id="todo-note-text"
+                      type="text"
+                      placeholder="Add a note for this task"
+                      class="w-full rounded-lg bg-transparent px-3 py-2 text-sm font-light text-white placeholder-white/70 focus:outline-none"
+                      value=""
+                    />
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
 
