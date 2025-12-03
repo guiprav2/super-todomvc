@@ -22,9 +22,11 @@
     <div class="flex flex-col">
       <div class="flex-1 flex justify-center items-center">
         <div
-          class="mx-auto flex w-full max-w-3xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl shadow-slate-400/30 ring-1 ring-slate-200 h-[80vh]"
+          class="mx-auto flex w-full max-w-3xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl shadow-slate-400/30 ring-1 ring-slate-200 max-h-[85vh] min-h-[60vh]"
         >
-          <div class="bg-gradient-to-r from-rose-500 to-amber-400 text-center">
+          <div
+            class="bg-gradient-to-r from-rose-500 to-amber-400 text-center shrink-0"
+          >
             <div class="p-10 pt-12">
               <h1
                 class="text-5xl font-light uppercase tracking-[0.4em] text-white"
@@ -105,7 +107,9 @@
             </div>
           </div>
 
-          <div class="flex-1 space-y-1 bg-slate-50 px-10 pb-10 pt-6">
+          <div
+            class="flex-1 space-y-1 bg-slate-50 px-10 pb-10 pt-6 overflow-auto"
+          >
             <div
               class="flex items-center gap-4 rounded-2xl bg-white px-6 py-4 shadow-sm"
             >
@@ -178,7 +182,7 @@
           </div>
 
           <div
-            class="flex flex-wrap items-center gap-4 border-t border-slate-100 bg-white px-10 py-6 text-sm text-slate-500"
+            class="flex flex-wrap items-center gap-4 border-t border-slate-100 bg-white px-10 py-6 text-sm text-slate-500 shrink-0"
           >
             <span class="text-slate-600">2 items left</span>
             <div class="flex flex-1 justify-center gap-2 text-slate-500">
