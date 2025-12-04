@@ -36,72 +36,58 @@
               <div>
                 <form
                   class="mt-8 flex flex-col gap-4 rounded-2xl bg-white/20 px-6 py-4 text-left shadow-inner backdrop-blur h-16"
+                  onsubmit="return false"
+                  wf-onsubmit="post('todo.addTodo')"
                 >
                   <div class="flex flex-wrap items-center gap-4">
                     <input
                       type="checkbox"
                       class="h-5 w-5 rounded-full border-white/70 text-white accent-white"
                       value="on"
+                      wf-checked="state.todo.completeAll"
+                      wf-onchange="await post('todo.toggleAll')"
                     />
                     <input
                       type="text"
                       placeholder="What needs to be done?"
                       class="flex-1 bg-transparent text-lg font-light text-white placeholder-white/70 focus:outline-none"
                       value=""
+                      wf-value="state.todo.newTodoText"
                     />
                     <label
                       class="flex cursor-pointer items-center gap-2 rounded-full border border-white/70 px-3 py-1 font-medium text-white transition hover:bg-white/10"
+                      wf-class="{{state.todo.newTodoIncludeNote ? 'bg-white/20 border-white' : ''}}"
                     >
-                      <input type="checkbox" class="hidden" value="on" />
+                      <input
+                        type="checkbox"
+                        class="hidden"
+                        value="on"
+                        wf-checked="state.todo.newTodoIncludeNote"
+                        wf-onchange="await post('todo.toggleNoteField')" />
                       <div class="nf nf-cod-note"></div></label
                     ><input
                       type="date"
                       class="rounded-lg px-3 py-2 text-sm text-white focus:outline-none bg-white/20"
                       value=""
-                    />
-                  </div>
-                  <div
-                    id="todo-note-field"
-                    class="hidden flex flex-col gap-2 rounded-2xl border border-white/70 bg-white/10 px-4 py-3 text-white"
-                  >
-                    <label for="todo-note-text" class="text-sm font-medium"
-                      >Note</label
-                    >
-                    <input
-                      id="todo-note-text"
-                      type="text"
-                      placeholder="Add a note for this task"
-                      class="w-full rounded-lg bg-transparent px-3 py-2 text-sm font-light text-white placeholder-white/70 focus:outline-none"
-                      value=""
+                      wf-value="state.todo.newTodoDueDate"
                     />
                   </div>
                 </form>
                 <form
                   class="flex flex-col gap-4 rounded-2xl bg-white/20 px-6 py-4 text-left shadow-inner backdrop-blur mt-3 h-16 justify-center"
+                  onsubmit="return false"
+                  wf-if="state.todo.newTodoIncludeNote"
                 >
-                  <div class="flex flex-wrap items-center gap-4">
-                    <input
-                      type="text"
-                      class="flex-1 bg-transparent text-lg font-light text-white placeholder-white/70 focus:outline-none"
-                      value=""
-                      placeholder="Add a small note to this to-do..."
-                    />
-                  </div>
-                  <div
-                    id="todo-note-field"
-                    class="hidden flex flex-col gap-2 rounded-2xl border border-white/70 bg-white/10 px-4 py-3 text-white"
-                  >
-                    <label for="todo-note-text" class="text-sm font-medium"
-                      >Note</label
-                    >
-                    <input
-                      id="todo-note-text"
-                      type="text"
-                      placeholder="Add a note for this task"
-                      class="w-full rounded-lg bg-transparent px-3 py-2 text-sm font-light text-white placeholder-white/70 focus:outline-none"
-                      value=""
-                    />
-                  </div>
+                  <input
+                    id="todo-note-text"
+                    type="text"
+                    placeholder="Add a note for this task"
+                    class="w-full rounded-lg bg-transparent px-3 py-2 text-sm font-light text-white placeholder-white/70 focus:outline-none"
+                    value=""
+                    wf-value="state.todo.quickNoteDetail"
+                    wf-onfocus="await post('todo.showQuickNoteDetails')"
+                    wf-onblur="await post('todo.maybeHideQuickNoteDetails')"
+                  />
                 </form>
               </div>
             </div>
@@ -111,70 +97,31 @@
             class="flex-1 space-y-1 bg-slate-50 px-10 pb-10 pt-6 overflow-auto"
           >
             <div
+              wf-map="todo of state.todo.todos.filter(todo =&gt; state.todo.filter === 'active' ? !todo.completed : state.todo.filter === 'completed' ? todo.completed : true)"
               class="flex items-center gap-4 rounded-2xl bg-white px-6 py-4 shadow-sm"
             >
               <input
                 type="checkbox"
                 class="h-5 w-5 rounded-full border-slate-300 text-emerald-500 accent-emerald-500"
                 value="on"
+                wf-checked="todo.completed"
+                wf-onchange="await post('todo.refreshCompleteAll')"
               />
-              <span class="flex-1 text-lg text-slate-700"
-                >Buy groceries for the week</span
+              <span
+                class="flex-1 text-lg"
+                wf-class="{{todo.completed ? 'text-slate-400 line-through' : 'text-slate-700'}}"
+                >{{todo.label}}</span
               >
               <input
                 type="date"
-                value="2024-09-20"
                 class="w-36 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 focus:outline-none"
+                wf-value="todo.dueDate"
+                value=""
               />
               <button
                 class="text-slate-300 transition hover:text-rose-500"
                 value=""
-              >
-                ✕
-              </button>
-            </div>
-            <div
-              class="flex items-center gap-4 rounded-2xl bg-white px-6 py-4 shadow-sm"
-            >
-              <input
-                type="checkbox"
-                class="h-5 w-5 rounded-full border-slate-300 text-emerald-500 accent-emerald-500"
-                value="on"
-              />
-              <span class="flex-1 text-lg text-slate-400 line-through"
-                >Schedule annual dentist appointment</span
-              >
-              <input
-                type="date"
-                value="2024-09-05"
-                class="w-36 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 focus:outline-none"
-              />
-              <button
-                class="text-slate-300 transition hover:text-rose-500"
-                value=""
-              >
-                ✕
-              </button>
-            </div>
-            <div
-              class="flex items-center gap-4 rounded-2xl bg-white px-6 py-4 shadow-sm"
-            >
-              <input
-                type="checkbox"
-                class="h-5 w-5 rounded-full border-slate-300 text-emerald-500 accent-emerald-500"
-                value="on"
-              />
-              <span class="flex-1 text-lg text-slate-700"
-                >Finish Q3 project report</span
-              >
-              <input
-                type="date"
-                value="2024-09-25"
-                class="w-36 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 focus:outline-none"
-              />
-              <button
-                class="text-slate-300 transition hover:text-rose-500"
-                value=""
+                wf-onclick="await post('todo.removeTodo', todo.id)"
               >
                 ✕
               </button>
@@ -184,23 +131,32 @@
           <div
             class="flex flex-wrap items-center gap-4 border-t border-slate-100 bg-white px-10 py-6 text-sm text-slate-500 shrink-0"
           >
-            <span class="text-slate-600">2 items left</span>
+            <span class="text-slate-600 truncate max-w-64"
+              >{{state.todo.todos.filter(todo =&gt; !todo.completed).length}}
+              {{state.todo.todos.filter(todo =&gt; !todo.completed).length === 1 ? 'item' : 'items'}} left</span
+            >
             <div class="flex flex-1 justify-center gap-2 text-slate-500">
               <button
-                class="rounded-lg border border-slate-200 px-3 py-1 font-medium text-slate-800"
+                class="rounded-lg border px-3 py-1 font-medium transition"
                 value=""
+                wf-class="{{state.todo.filter === 'all' ? 'border-slate-200 text-slate-800 bg-white' : 'border-transparent text-slate-500 hover:border-slate-200 hover:text-slate-800'}}"
+                wf-onclick="await post('todo.setFilter', 'all')"
               >
                 All
               </button>
               <button
-                class="rounded-lg border border-transparent px-3 py-1 transition hover:border-slate-200 hover:text-slate-800"
+                class="rounded-lg border px-3 py-1 transition"
                 value=""
+                wf-class="{{state.todo.filter === 'active' ? 'border-slate-200 text-slate-800 bg-white' : 'border-transparent text-slate-500 hover:border-slate-200 hover:text-slate-800'}}"
+                wf-onclick="await post('todo.setFilter', 'active')"
               >
                 Active
               </button>
               <button
-                class="rounded-lg border border-transparent px-3 py-1 transition hover:border-slate-200 hover:text-slate-800"
+                class="rounded-lg border px-3 py-1 transition"
                 value=""
+                wf-class="{{state.todo.filter === 'completed' ? 'border-slate-200 text-slate-800 bg-white' : 'border-transparent text-slate-500 hover:border-slate-200 hover:text-slate-800'}}"
+                wf-onclick="await post('todo.setFilter', 'completed')"
               >
                 Completed
               </button>
@@ -208,6 +164,8 @@
             <button
               class="rounded-lg border border-transparent px-3 py-1 text-rose-500 transition hover:border-rose-100 hover:bg-rose-50"
               value=""
+              wf-onclick="await post('todo.clearCompleted')"
+              wf-disabled="!state.todo.todos.some(todo =&gt; todo.completed)"
             >
               Clear completed
             </button>
