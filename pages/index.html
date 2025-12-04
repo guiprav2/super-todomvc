@@ -22,7 +22,7 @@
     <div class="flex flex-col">
       <div class="flex-1 flex justify-center items-center">
         <div
-          class="mx-auto flex w-full max-w-3xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl shadow-slate-400/30 ring-1 ring-slate-200 max-h-[85vh] min-h-[60vh]"
+          class="mx-auto flex max-w-3xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl shadow-slate-400/30 ring-1 ring-slate-200 w-screen sm:h-[85vh]"
         >
           <div
             class="bg-gradient-to-r from-rose-500 to-amber-400 text-center shrink-0"
@@ -35,11 +35,11 @@
               </h1>
               <div>
                 <form
-                  class="mt-8 flex flex-col gap-4 rounded-2xl bg-white/20 px-6 py-4 text-left shadow-inner backdrop-blur h-16"
+                  class="mt-8 flex gap-4 rounded-2xl bg-white/20 px-6 py-4 text-left shadow-inner backdrop-blur h-16 flex-col justify-center"
                   onsubmit="return false"
                   wf-onsubmit="post('todo.addTodo')"
                 >
-                  <div class="flex flex-wrap items-center gap-4">
+                  <div class="flex items-center gap-4">
                     <input
                       type="checkbox"
                       class="h-5 w-5 rounded-full border-white/70 text-white accent-white"
@@ -55,7 +55,7 @@
                       wf-value="state.todo.newTodoText"
                     />
                     <label
-                      class="flex cursor-pointer items-center gap-2 rounded-full border border-white/70 px-3 py-1 font-medium text-white transition hover:bg-white/10"
+                      class="flex cursor-pointer items-center gap-2 rounded-full border border-white/70 px-3 py-1 font-medium text-white transition hover:bg-white/10 shrink-0"
                       wf-class="{{state.todo.newTodoIncludeNote ? 'bg-white/20 border-white' : ''}}"
                     >
                       <input
@@ -67,7 +67,7 @@
                       <div class="nf nf-cod-note"></div></label
                     ><input
                       type="date"
-                      class="rounded-lg px-3 py-2 text-sm text-white focus:outline-none bg-white/20"
+                      class="rounded-lg px-3 py-2 text-sm text-white focus:outline-none bg-white/20 hidden sm:block"
                       value=""
                       wf-value="state.todo.newTodoDueDate"
                     />
@@ -128,7 +128,7 @@
               </div>
               <input
                 type="date"
-                class="w-36 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 focus:outline-none"
+                class="w-36 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 focus:outline-none hidden sm:block"
                 wf-value="todo.dueDate"
                 value=""
               />
