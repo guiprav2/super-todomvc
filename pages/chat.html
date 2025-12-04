@@ -19,137 +19,147 @@
     class="flex flex-col [&amp;&gt;div:first-child]:flex-1 min-h-screen"
     style="display: none"
   >
-    <div class="flex flex-col">
-      <div class="flex-1 flex flex-col">
+    <div class="flex min-h-screen flex-col">
+      <div class="flex-1 min-h-0 flex flex-col">
         <div
-          class="flex flex-1 flex-col justify-center items-center bg-neutral-100"
+          class="flex flex-1 min-h-0 flex-col justify-center items-center bg-neutral-100"
         >
           <div
-            class="mx-auto flex flex-col overflow-hidden bg-white shadow-2xl shadow-slate-400/30 ring-1 ring-slate-200 w-screen lg:h-[85vh] flex-1 lg:flex-0 lg:rounded-3xl lg:max-w-3xl"
+            class="mx-auto flex w-screen flex-1 min-h-0 flex-col overflow-hidden bg-white shadow-2xl shadow-slate-400/30 ring-1 ring-slate-200 lg:rounded-3xl lg:max-w-3xl xl:flex-none sm:h-auto max-h-[calc(100vh_-_4rem)] lg:max-h-[85vh] xl:min-h-[80vh]"
           >
-            <div
-              class="bg-gradient-to-r from-rose-500 to-amber-400 text-center overflow-hidden"
-            >
-              <div class="p-10 pt-12">
-                <h1
-                  class="text-5xl font-light uppercase tracking-[0.4em] text-white"
+            <div class="flex flex-1 min-h-0 flex-col overflow-y-auto">
+              <div
+                class="bg-gradient-to-r from-rose-500 to-amber-400 text-center overflow-hidden sticky top-0 z-10 shrink-0"
+              >
+                <div class="p-10 pt-12">
+                  <h1
+                    class="text-5xl font-light uppercase tracking-[0.4em] text-white"
+                  >
+                    Chat
+                  </h1>
+                </div>
+              </div>
+              <div class="flex flex-1 min-h-0 flex-col md:flex-row">
+                <div
+                  class="rounded-lg border border-slate-200 bg-white p-6 flex flex-col gap-4 lg:w-64"
                 >
-                  Chat
-                </h1>
-              </div>
-            </div>
-            <div class="flex flex-1 flex-col md:flex-row">
-              <div
-                class="rounded-lg border border-slate-200 bg-white p-6 flex flex-col gap-4 lg:w-64"
-              >
-                <div class="rounded-lg border border-slate-200 bg-rose-50 p-6">
-                  <p class="text-sm font-medium text-slate-800">
-                    No threads yet
-                  </p>
-                  <p class="text-sm text-slate-600">
-                    Start a conversation to populate this list.
-                  </p>
-                </div>
+                  <div
+                    class="rounded-lg border border-slate-200 bg-rose-50 p-6"
+                  >
+                    <p class="text-sm font-medium text-slate-800">
+                      No threads yet
+                    </p>
+                    <p class="text-sm text-slate-600">
+                      Start a conversation to populate this list.
+                    </p>
+                  </div>
 
-                <div class="space-y-4">
-                  <div
-                    class="group flex items-center gap-2 rounded-lg bg-white px-3 py-2 transition hover:bg-rose-50 border border-slate-200 hover:border-rose-500/50"
-                  >
-                    <button
-                      class="flex-1 text-left text-sm font-medium text-slate-600 transition group-hover:text-rose-500"
-                      value=""
+                  <div class="space-y-4">
+                    <div
+                      class="group flex items-center gap-2 rounded-lg bg-white px-3 py-2 transition hover:bg-rose-50 border border-slate-200 hover:border-rose-500/50"
                     >
-                      Product Launch Prep
-                    </button>
-                    <button
-                      class="rounded-lg border border-slate-200 text-sm text-slate-600 opacity-0 transition group-hover:opacity-100 group-hover:text-rose-500 nf nf-oct-x p-1"
-                      aria-label="Delete Q3 Planning Sync"
-                      value=""
-                    ></button>
-                  </div>
-                  <div
-                    class="group flex items-center gap-2 rounded-lg bg-white px-3 py-2 transition hover:bg-rose-50 border border-slate-200 hover:border-rose-500/50"
-                  >
-                    <button
-                      class="flex-1 text-left text-sm font-medium text-slate-600 transition group-hover:text-rose-500"
-                      value=""
+                      <button
+                        class="flex-1 text-left text-sm font-medium text-slate-600 transition group-hover:text-rose-500"
+                        value=""
+                      >
+                        Product Launch Prep
+                      </button>
+                      <button
+                        class="rounded-lg border border-slate-200 text-sm text-slate-600 opacity-0 transition group-hover:opacity-100 group-hover:text-rose-500 nf nf-oct-x p-1"
+                        aria-label="Delete Q3 Planning Sync"
+                        value=""
+                      ></button>
+                    </div>
+                    <div
+                      class="group flex items-center gap-2 rounded-lg bg-white px-3 py-2 transition hover:bg-rose-50 border border-slate-200 hover:border-rose-500/50"
                     >
-                      Q3 Planning Sync
-                    </button>
-                    <button
-                      class="rounded-lg border border-slate-200 text-sm text-slate-600 opacity-0 transition group-hover:opacity-100 group-hover:text-rose-500 nf nf-oct-x p-1"
-                      aria-label="Delete Q3 Planning Sync"
-                      value=""
-                    ></button>
-                  </div>
-                  <div
-                    class="group flex items-center gap-2 rounded-lg bg-white px-3 py-2 transition hover:bg-rose-50 border border-slate-200 hover:border-rose-500/50"
-                  >
-                    <button
-                      class="flex-1 text-left text-sm font-medium text-slate-600 transition group-hover:text-rose-500"
-                      value=""
+                      <button
+                        class="flex-1 text-left text-sm font-medium text-slate-600 transition group-hover:text-rose-500"
+                        value=""
+                      >
+                        Q3 Planning Sync
+                      </button>
+                      <button
+                        class="rounded-lg border border-slate-200 text-sm text-slate-600 opacity-0 transition group-hover:opacity-100 group-hover:text-rose-500 nf nf-oct-x p-1"
+                        aria-label="Delete Q3 Planning Sync"
+                        value=""
+                      ></button>
+                    </div>
+                    <div
+                      class="group flex items-center gap-2 rounded-lg bg-white px-3 py-2 transition hover:bg-rose-50 border border-slate-200 hover:border-rose-500/50"
                     >
-                      Support Handoff
-                    </button>
-                    <button
-                      class="rounded-lg border border-slate-200 text-sm text-slate-600 opacity-0 transition group-hover:opacity-100 group-hover:text-rose-500 nf nf-oct-x p-1"
-                      aria-label="Delete Q3 Planning Sync"
-                      value=""
-                    ></button>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="flex-1 flex flex-col border-l border-slate-200 bg-white"
-              >
-                <div class="flex-1 space-y-4 overflow-y-auto p-6">
-                  <div class="flex justify-start">
-                    <div class="max-w-3xl rounded-lg bg-rose-50 p-4">
-                      <p class="text-sm font-medium text-rose-500">Assistant</p>
-                      <p class="text-sm text-slate-800">
-                        Hi there! How can I help you plan your next conversation
-                        today?
-                      </p>
+                      <button
+                        class="flex-1 text-left text-sm font-medium text-slate-600 transition group-hover:text-rose-500"
+                        value=""
+                      >
+                        Support Handoff
+                      </button>
+                      <button
+                        class="rounded-lg border border-slate-200 text-sm text-slate-600 opacity-0 transition group-hover:opacity-100 group-hover:text-rose-500 nf nf-oct-x p-1"
+                        aria-label="Delete Q3 Planning Sync"
+                        value=""
+                      ></button>
                     </div>
                   </div>
-                  <div class="flex justify-end">
-                    <div
-                      class="max-w-3xl overflow-hidden rounded-lg border border-slate-200 bg-white"
-                    >
-                      <div class="p-4">
-                        <p class="text-sm font-medium text-rose-500">You</p>
+                </div>
+                <div
+                  class="flex-1 flex min-h-0 flex-col border-l border-slate-200 bg-white"
+                >
+                  <div class="flex-1 space-y-4 p-6">
+                    <div class="flex justify-start">
+                      <div class="max-w-3xl rounded-lg bg-rose-50 p-4">
+                        <p class="text-sm font-medium text-rose-500">
+                          Assistant
+                        </p>
                         <p class="text-sm text-slate-800">
-                          I need to coordinate a launch update with the team
-                          tomorrow.
+                          Hi there! How can I help you plan your next
+                          conversation today?
                         </p>
                       </div>
+                    </div>
+                    <div class="flex justify-end">
                       <div
-                        class="w-full bg-gradient-to-r from-rose-500 to-amber-400 py-1"
-                      ></div>
+                        class="max-w-3xl overflow-hidden rounded-lg border border-slate-200 bg-white"
+                      >
+                        <div class="p-4">
+                          <p class="text-sm font-medium text-rose-500">You</p>
+                          <p class="text-sm text-slate-800">
+                            I need to coordinate a launch update with the team
+                            tomorrow.
+                          </p>
+                        </div>
+                        <div
+                          class="w-full bg-gradient-to-r from-rose-500 to-amber-400 py-1"
+                        ></div>
+                      </div>
+                    </div>
+                    <div class="flex justify-start">
+                      <div class="max-w-3xl rounded-lg bg-rose-50 p-4">
+                        <p class="text-sm font-medium text-rose-500">
+                          Assistant
+                        </p>
+                        <p class="text-sm text-slate-800">
+                          Great! Want me to draft a quick agenda and reminders?
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <div class="flex justify-start">
-                    <div class="max-w-3xl rounded-lg bg-rose-50 p-4">
-                      <p class="text-sm font-medium text-rose-500">Assistant</p>
-                      <p class="text-sm text-slate-800">
-                        Great! Want me to draft a quick agenda and reminders?
-                      </p>
-                    </div>
+                  <div
+                    class="border-t border-slate-200 p-4 sticky bottom-0 bg-white"
+                  >
+                    <form class="flex items-center gap-3">
+                      <input
+                        type="text"
+                        placeholder="Type your message..."
+                        class="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-800 min-w-0"
+                        value=""
+                      /><a
+                        href="#"
+                        class="rounded-lg px-3 py-2 transition hover:bg-rose-50 hover:text-rose-500 border border-slate-200 hover:border-rose-500/50 text-neutral-600"
+                        >Send</a
+                      >
+                    </form>
                   </div>
-                </div>
-                <div class="border-t border-slate-200 p-4">
-                  <form class="flex items-center gap-3">
-                    <input
-                      type="text"
-                      placeholder="Type your message..."
-                      class="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-800"
-                      value=""
-                    /><a
-                      href="#"
-                      class="rounded-lg px-3 py-2 transition hover:bg-rose-50 hover:text-rose-500 border border-slate-200 hover:border-rose-500/50 text-neutral-600"
-                      >Send</a
-                    >
-                  </form>
                 </div>
               </div>
             </div>
