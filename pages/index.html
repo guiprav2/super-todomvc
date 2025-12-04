@@ -95,8 +95,15 @@
           </div>
 
           <div
-            class="flex-1 space-y-1 bg-slate-50 px-10 pb-10 pt-6 overflow-auto"
+            class="flex-1 bg-slate-50 px-10 pb-10 pt-6 overflow-auto flex flex-col gap-1"
           >
+            <div
+              class="flex-1 flex flex-col justify-center items-center gap-6"
+              wf-if="!state.todo.todos.filter(todo =&gt; state.todo.filter === 'active' ? !todo.completed : state.todo.filter === 'completed' ? todo.completed : true).length"
+            >
+              <div class="text-7xl opacity-90">✨</div>
+              <div class="text-neutral-600">All done!</div>
+            </div>
             <div
               wf-map="todo of state.todo.todos.filter(todo =&gt; state.todo.filter === 'active' ? !todo.completed : state.todo.filter === 'completed' ? todo.completed : true)"
               class="flex items-center gap-4 rounded-2xl bg-white px-6 py-4 shadow-sm"
@@ -147,7 +154,7 @@
                 class="rounded-lg border px-3 py-1 font-medium transition"
                 value=""
                 wf-class="{{state.todo.filter === 'all' ? 'border-slate-200 text-slate-800 bg-white' : 'border-transparent text-slate-500 hover:border-slate-200 hover:text-slate-800'}}"
-                wf-onclick="await post('todo.setFilter', 'all')"
+                wf-onclick="post('todo.setFilter', 'all')"
               >
                 All
               </button>
@@ -155,7 +162,7 @@
                 class="rounded-lg border px-3 py-1 transition"
                 value=""
                 wf-class="{{state.todo.filter === 'active' ? 'border-slate-200 text-slate-800 bg-white' : 'border-transparent text-slate-500 hover:border-slate-200 hover:text-slate-800'}}"
-                wf-onclick="await post('todo.setFilter', 'active')"
+                wf-onclick="post('todo.setFilter', 'active')"
               >
                 Active
               </button>
@@ -163,7 +170,7 @@
                 class="rounded-lg border px-3 py-1 transition"
                 value=""
                 wf-class="{{state.todo.filter === 'completed' ? 'border-slate-200 text-slate-800 bg-white' : 'border-transparent text-slate-500 hover:border-slate-200 hover:text-slate-800'}}"
-                wf-onclick="await post('todo.setFilter', 'completed')"
+                wf-onclick="post('todo.setFilter', 'completed')"
               >
                 Completed
               </button>
@@ -171,7 +178,7 @@
             <button
               class="rounded-lg border border-transparent px-3 py-1 text-rose-500 transition hover:border-rose-100 hover:bg-rose-50"
               value=""
-              wf-onclick="await post('todo.clearCompleted')"
+              wf-onclick="post('todo.clearCompleted')"
               wf-disabled="!state.todo.todos.some(todo =&gt; todo.completed)"
             >
               Clear completed
