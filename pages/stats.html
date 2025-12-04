@@ -47,37 +47,38 @@
                   <h2 class="text-2xl font-medium text-slate-800">Top 3</h2>
                 </div>
               </div>
-              <ol class="mt-4 space-y-4 flex-1">
-                <li class="flex gap-3">
-                  <span class="text-sm font-medium text-slate-600">1.</span>
+              <ol class="mt-4 flex-1 flex flex-col gap-4">
+                <div
+                  class="flex-1 flex flex-col justify-center items-center gap-6"
+                  wf-if="state.todo.todos.every(todo =&gt; todo.completed)"
+                >
+                  <div class="text-7xl opacity-90">✨</div>
+                  <div class="text-neutral-600">All done!</div>
+                </div>
+                <li
+                  class="flex gap-3"
+                  wf-map="todo of state.todo.todos.filter(todo =&gt; !todo.completed).slice(0, 3)"
+                >
+                  <span
+                    class="text-sm font-medium text-slate-600 truncate max-w-8"
+                    >{{state.todo.todos.filter(todo =&gt; !todo.completed).indexOf(todo) + 1}}.</span
+                  >
                   <div>
-                    <p class="font-medium text-slate-800">
-                      Design onboarding flow
+                    <p class="font-medium text-slate-800">{{todo.label}}</p>
+                    <p class="text-sm text-slate-600" wf-if="todo.note">
+                      {{todo.note}}
                     </p>
-                    <p class="text-sm text-slate-600">
-                      Due today · High priority
+                    <p
+                      class="text-sm text-slate-600"
+                      wf-if="!todo.note &amp;&amp; todo.dueDate"
+                    >
+                      Due {{todo.dueDate}}
                     </p>
-                  </div>
-                </li>
-                <li class="flex gap-3">
-                  <span class="text-sm font-medium text-slate-600">2.</span>
-                  <div>
-                    <p class="font-medium text-slate-800">
-                      QA checklist for sprint 14
-                    </p>
-                    <p class="text-sm text-slate-600">
-                      Due tomorrow · Blocked by API fix
-                    </p>
-                  </div>
-                </li>
-                <li class="flex gap-3">
-                  <span class="text-sm font-medium text-slate-600">3.</span>
-                  <div>
-                    <p class="font-medium text-slate-800">
-                      Schedule retro with core team
-                    </p>
-                    <p class="text-sm text-slate-600">
-                      Due Friday · Needs agenda draft
+                    <p
+                      class="text-sm text-slate-400 italic"
+                      wf-if="!todo.note &amp;&amp; !todo.dueDate"
+                    >
+                      No extra details
                     </p>
                   </div>
                 </li>
@@ -89,17 +90,24 @@
                   Todo statistics
                 </p>
                 <div class="flex items-baseline gap-3">
-                  <span class="text-2xl font-medium text-slate-800">8</span>
+                  <span
+                    class="text-2xl font-medium text-slate-800 truncate max-w-16"
+                    >{{state.todo.todos.filter(todo =&gt; todo.completed).length}}</span
+                  >
                   <span class="text-sm text-slate-600">completed tasks</span>
                 </div>
                 <div class="flex gap-6 mt-2">
                   <div>
                     <p class="text-sm text-slate-600">Remaining</p>
-                    <p class="font-medium text-slate-800">3 tasks</p>
+                    <p class="font-medium text-slate-800 truncate max-w-16">
+                      {{state.todo.todos.filter(todo =&gt; !todo.completed).length}} tasks
+                    </p>
                   </div>
                   <div>
                     <p class="text-sm text-slate-600">Overdue</p>
-                    <p class="font-medium text-rose-500">1 task</p>
+                    <p class="font-medium text-rose-500 truncate max-w-16">
+                      {{(() =&gt; { let today = new Date(); today.setHours(0, 0, 0, 0); return state.todo.todos.filter( todo =&gt; !todo.completed &amp;&amp; todo.dueDate &amp;&amp; new Date(todo.dueDate) &lt; today, ).length; })()}} tasks
+                    </p>
                   </div>
                 </div>
               </section>
