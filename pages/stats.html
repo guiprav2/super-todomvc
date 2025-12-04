@@ -20,12 +20,12 @@
     style="display: none"
   >
     <div class="flex flex-col">
-      <div class="flex-1 flex justify-center items-center">
+      <div class="flex flex-1 flex-col justify-center items-center">
         <div
-          class="mx-auto flex max-w-3xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl shadow-slate-400/30 ring-1 ring-slate-200 h-[85vh] w-screen"
+          class="mx-auto flex max-w-3xl flex-col overflow-hidden bg-white shadow-2xl shadow-slate-400/30 ring-1 ring-slate-200 w-screen sm:h-[85vh] flex-1 sm:flex-0 sm:rounded-3xl"
         >
           <div
-            class="bg-gradient-to-r from-rose-500 to-amber-400 text-center overflow-hidden rounded-t-3xl shrink-0"
+            class="bg-gradient-to-r from-rose-500 to-amber-400 text-center overflow-hidden shrink-0"
           >
             <div class="p-10 pt-12">
               <h1
@@ -35,7 +35,7 @@
               </h1>
             </div>
           </div>
-          <div class="flex gap-6 p-6">
+          <div class="flex gap-6 p-6 flex-col sm:flex-row">
             <section
               class="rounded-lg border border-slate-200 bg-white p-6 flex-1 flex flex-col"
             >
@@ -126,7 +126,7 @@
           </div>
         </div>
       </div>
-      <header class="border-slate-200 bg-white border-t">
+      <header class="sticky bottom-0 z-10 border-t border-slate-200 bg-white">
         <div
           class="mx-auto flex max-w-3xl items-center px-10 py-4 justify-center"
         >
@@ -141,8 +141,7 @@
               href="stats.html"
               class="rounded-lg px-3 py-2 transition bg-rose-50 text-rose-500"
               >Stats</a
-            >
-            <a
+            ><a
               href="chat.html"
               class="rounded-lg px-3 py-2 transition hover:bg-rose-50 hover:text-rose-500"
               >Chat</a
