@@ -20,9 +20,11 @@
     style="display: none"
   >
     <div class="flex min-h-screen flex-col">
-      <div class="flex flex-1 flex-col justify-center items-center">
+      <div
+        class="flex flex-1 flex-col justify-center items-center bg-neutral-100"
+      >
         <div
-          class="mx-auto flex max-w-3xl flex-col overflow-hidden bg-white shadow-2xl shadow-slate-400/30 ring-1 ring-slate-200 w-screen md:h-[85vh] flex-1 md:flex-0 md:rounded-3xl"
+          class="mx-auto flex flex-col overflow-hidden bg-white shadow-2xl shadow-slate-400/30 ring-1 ring-slate-200 w-screen lg:h-[85vh] flex-1 lg:flex-0 lg:rounded-3xl lg:max-w-3xl lg:max-h-[85vh]"
         >
           <div
             class="bg-gradient-to-r from-rose-500 to-amber-400 text-center shrink-0"
@@ -40,7 +42,7 @@
                   wf-onsubmit="post('todo.addTodo')"
                 >
                   <div
-                    class="flex w-full flex-wrap items-center gap-2 md:gap-4"
+                    class="flex w-full flex-wrap items-center gap-2 lg:gap-4"
                   >
                     <input
                       type="checkbox"
@@ -71,7 +73,7 @@
                     </label>
                     <input
                       type="date"
-                      class="hidden w-full rounded-lg bg-white/20 px-3 py-2 text-sm text-white focus:outline-none md:block md:w-36"
+                      class="hidden w-full rounded-lg bg-white/20 px-3 py-2 text-sm text-white focus:outline-none lg:block lg:w-36"
                       value=""
                       wf-value="state.todo.newTodoDueDate"
                     />
@@ -99,10 +101,10 @@
           </div>
 
           <div
-            class="flex-1 bg-slate-50 px-10 pb-10 pt-6 overflow-auto flex flex-col gap-1"
+            class="flex-1 bg-slate-50 px-10 pb-10 pt-6 overflow-auto flex flex-col gap-3"
           >
             <div
-              class="flex-1 flex flex-col justify-center items-center gap-6"
+              class="flex-1 flex flex-col justify-center items-center gap-6 pt-8"
               wf-if="!state.todo.todos.filter(todo =&gt; state.todo.filter === 'active' ? !todo.completed : state.todo.filter === 'completed' ? todo.completed : true).length"
             >
               <div class="text-7xl opacity-90">✨</div>
@@ -132,7 +134,7 @@
               </div>
               <input
                 type="date"
-                class="w-36 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 focus:outline-none hidden md:block"
+                class="w-36 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 focus:outline-none hidden lg:block"
                 wf-value="todo.dueDate"
                 value=""
               />
