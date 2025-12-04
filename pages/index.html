@@ -22,7 +22,7 @@
     <div class="flex min-h-screen flex-col">
       <div class="flex flex-1 flex-col justify-center items-center">
         <div
-          class="mx-auto flex max-w-3xl flex-col overflow-hidden bg-white shadow-2xl shadow-slate-400/30 ring-1 ring-slate-200 w-screen sm:h-[85vh] flex-1 sm:flex-0 sm:rounded-3xl"
+          class="mx-auto flex max-w-3xl flex-col overflow-hidden bg-white shadow-2xl shadow-slate-400/30 ring-1 ring-slate-200 w-screen md:h-[85vh] flex-1 md:flex-0 md:rounded-3xl"
         >
           <div
             class="bg-gradient-to-r from-rose-500 to-amber-400 text-center shrink-0"
@@ -40,7 +40,7 @@
                   wf-onsubmit="post('todo.addTodo')"
                 >
                   <div
-                    class="flex w-full flex-wrap items-center gap-2 sm:gap-4"
+                    class="flex w-full flex-wrap items-center gap-2 md:gap-4"
                   >
                     <input
                       type="checkbox"
@@ -71,7 +71,7 @@
                     </label>
                     <input
                       type="date"
-                      class="hidden w-full rounded-lg bg-white/20 px-3 py-2 text-sm text-white focus:outline-none sm:block sm:w-36"
+                      class="hidden w-full rounded-lg bg-white/20 px-3 py-2 text-sm text-white focus:outline-none md:block md:w-36"
                       value=""
                       wf-value="state.todo.newTodoDueDate"
                     />
@@ -132,7 +132,7 @@
               </div>
               <input
                 type="date"
-                class="w-36 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 focus:outline-none hidden sm:block"
+                class="w-36 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 focus:outline-none hidden md:block"
                 wf-value="todo.dueDate"
                 value=""
               />
