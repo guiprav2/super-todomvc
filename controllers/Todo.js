@@ -49,7 +49,7 @@ export default class Todo {
       let nextTodo = {
         id: generatedId,
         label: text,
-        completed: false,
+        completed: this.state.completeAll,
         dueDate,
         note,
       };

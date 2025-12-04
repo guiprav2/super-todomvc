@@ -76,6 +76,7 @@
                 <form
                   class="flex flex-col gap-4 rounded-2xl bg-white/20 px-6 py-4 text-left shadow-inner backdrop-blur mt-3 h-16 justify-center"
                   onsubmit="return false"
+                  wf-onsubmit="post('todo.addTodo')"
                   wf-if="state.todo.newTodoIncludeNote"
                 >
                   <input
@@ -84,7 +85,7 @@
                     placeholder="Add a note for this task"
                     class="w-full rounded-lg bg-transparent px-3 py-2 text-sm font-light text-white placeholder-white/70 focus:outline-none"
                     value=""
-                    wf-value="state.todo.quickNoteDetail"
+                    wf-value="state.todo.newTodoNote"
                     wf-onfocus="await post('todo.showQuickNoteDetails')"
                     wf-onblur="await post('todo.maybeHideQuickNoteDetails')"
                   />
@@ -107,11 +108,17 @@
                 wf-checked="todo.completed"
                 wf-onchange="await post('todo.refreshCompleteAll')"
               />
-              <span
-                class="flex-1 text-lg"
-                wf-class="{{todo.completed ? 'text-slate-400 line-through' : 'text-slate-700'}}"
-                >{{todo.label}}</span
-              >
+              <div class="flex-1">
+                <p
+                  class="text-lg"
+                  wf-class="{{todo.completed ? 'text-slate-400 line-through' : 'text-slate-700'}}"
+                >
+                  {{todo.label}}
+                </p>
+                <p class="text-sm text-slate-500 mt-1" wf-if="todo.note">
+                  {{todo.note}}
+                </p>
+              </div>
               <input
                 type="date"
                 class="w-36 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 focus:outline-none"
@@ -121,7 +128,7 @@
               <button
                 class="text-slate-300 transition hover:text-rose-500"
                 value=""
-                wf-onclick="await post('todo.removeTodo', todo.id)"
+                wf-onclick="post('todo.removeTodo', todo.id)"
               >
                 ✕
               </button>
