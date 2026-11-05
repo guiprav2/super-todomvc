@@ -25,6 +25,7 @@ export default class Todo {
     ],
     filter: 'all',
     newTodoText: '',
+    newTodoCompleted: false,
     newTodoDueDate: '',
     newTodoIncludeNote: false,
     newTodoNote: '',
@@ -49,12 +50,13 @@ export default class Todo {
       let nextTodo = {
         id: generatedId,
         label: text,
-        completed: this.state.completeAll,
+        completed: this.state.newTodoCompleted,
         dueDate,
         note,
       };
       this.state.todos = [nextTodo, ...this.state.todos];
       this.state.newTodoText = '';
+      this.state.newTodoCompleted = false;
       this.state.newTodoDueDate = '';
       this.state.newTodoIncludeNote = false;
       this.state.newTodoNote = '';
