@@ -4,7 +4,7 @@ export default class Todo {
       {
         id: 'todo-1',
         label: 'Buy groceries for the week',
-        completed: false,
+        completed: true,
         dueDate: '2024-09-20',
         note: 'Restock produce and breakfast essentials.',
       },
@@ -24,15 +24,14 @@ export default class Todo {
       },
     ],
     filter: 'all',
-    newTodoText: '',
     newTodoCompleted: false,
+    newTodoText: '',
     newTodoDueDate: '',
     newTodoIncludeNote: false,
     newTodoNote: '',
     quickNote: '',
     quickNoteDetail: '',
     quickNoteExpanded: false,
-    completeAll: false,
   };
 
   actions = {
@@ -55,28 +54,21 @@ export default class Todo {
         note,
       };
       this.state.todos = [nextTodo, ...this.state.todos];
-      this.state.newTodoText = '';
       this.state.newTodoCompleted = false;
+      this.state.newTodoText = '';
       this.state.newTodoDueDate = '';
       this.state.newTodoIncludeNote = false;
       this.state.newTodoNote = '';
-      this.state.completeAll =
-        this.state.todos.length > 0 &&
-        this.state.todos.every(todo => todo.completed);
     },
 
     removeTodo: id => {
       let nextTodos = this.state.todos.filter(todo => todo.id !== id);
       this.state.todos = nextTodos;
-      this.state.completeAll =
-        nextTodos.length > 0 && nextTodos.every(todo => todo.completed);
     },
 
     clearCompleted: () => {
       let nextTodos = this.state.todos.filter(todo => !todo.completed);
       this.state.todos = nextTodos;
-      this.state.completeAll =
-        nextTodos.length > 0 && nextTodos.every(todo => todo.completed);
     },
 
     toggleAll: () => {
@@ -88,17 +80,10 @@ export default class Todo {
         ...todo,
         completed: shouldComplete,
       }));
-      this.state.completeAll = shouldComplete;
     },
 
     setFilter: filter => {
       this.state.filter = filter;
-    },
-
-    refreshCompleteAll: () => {
-      this.state.completeAll =
-        this.state.todos.length > 0 &&
-        this.state.todos.every(todo => todo.completed);
     },
 
     toggleNoteField: () => {

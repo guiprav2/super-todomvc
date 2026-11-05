@@ -1,5 +1,14 @@
 {
   "nerdfonts": true,
   "tailwind": true,
-  "betterscroll": true
+  "betterscroll": true,
+  "nativeExport": {
+    "target": "linux-x64",
+    "width": 1280,
+    "height": 800,
+    "startMaximized": false,
+    "rememberDimensions": true,
+    "borderless": false,
+    "dragAnywhere": false
+  }
 }

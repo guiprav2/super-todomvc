@@ -36,68 +36,66 @@
                 >
                   Todos
                 </h1>
-                <div>
-                  <form
-                    class="mt-8 flex flex-col gap-3 rounded-2xl bg-white/20 px-6 py-4 text-left shadow-inner backdrop-blur"
-                    onsubmit="return false"
-                    wf-onsubmit="post('todo.addTodo')"
+
+                <form
+                  class="mt-8 flex flex-col gap-3 rounded-2xl bg-white/20 px-6 py-4 text-left shadow-inner backdrop-blur"
+                  onsubmit="return false"
+                  wf-onsubmit="post('todo.addTodo')"
+                >
+                  <div
+                    class="flex w-full flex-wrap items-center gap-2 lg:gap-4"
                   >
-                    <div
-                      class="flex w-full flex-wrap items-center gap-2 lg:gap-4"
+                    <input
+                      type="checkbox"
+                      class="h-5 w-5 rounded-full border-white/70 text-white accent-white"
+                      value="on"
+                      wf-checked="state.todo.newTodoCompleted"
+                    />
+                    <input
+                      type="text"
+                      placeholder="What needs to be done?"
+                      class="flex-1 min-w-0 truncate bg-transparent text-lg font-light text-white placeholder-white/70 focus:outline-none"
+                      value=""
+                      wf-value="state.todo.newTodoText"
+                    />
+                    <label
+                      class="flex shrink-0 cursor-pointer items-center gap-2 rounded-full border border-white/70 px-3 py-1 font-medium text-white transition hover:bg-white/10"
+                      wf-class="{{state.todo.newTodoIncludeNote ? 'bg-white/20 border-white' : ''}}"
                     >
                       <input
                         type="checkbox"
-                        class="h-5 w-5 rounded-full border-white/70 text-white accent-white"
+                        class="hidden"
                         value="on"
-                        wf-checked="state.todo.completeAll"
-                        wf-onchange="await post('todo.toggleAll')"
+                        wf-checked="state.todo.newTodoIncludeNote"
+                        wf-onchange="await post('todo.toggleNoteField')"
                       />
-                      <input
-                        type="text"
-                        placeholder="What needs to be done?"
-                        class="flex-1 min-w-0 truncate bg-transparent text-lg font-light text-white placeholder-white/70 focus:outline-none"
-                        value=""
-                        wf-value="state.todo.newTodoText"
-                      />
-                      <label
-                        class="flex shrink-0 cursor-pointer items-center gap-2 rounded-full border border-white/70 px-3 py-1 font-medium text-white transition hover:bg-white/10"
-                        wf-class="{{state.todo.newTodoIncludeNote ? 'bg-white/20 border-white' : ''}}"
-                      >
-                        <input
-                          type="checkbox"
-                          class="hidden"
-                          value="on"
-                          wf-checked="state.todo.newTodoIncludeNote"
-                          wf-onchange="await post('todo.toggleNoteField')"
-                        />
-                        <div class="nf nf-cod-note"></div>
-                      </label>
-                      <input
-                        type="date"
-                        class="hidden w-full rounded-lg bg-white/20 px-3 py-2 text-sm text-white focus:outline-none lg:block lg:w-36"
-                        value=""
-                        wf-value="state.todo.newTodoDueDate"
-                      />
-                    </div>
-                  </form>
-                  <form
-                    class="flex flex-col gap-4 rounded-2xl bg-white/20 px-6 py-4 text-left shadow-inner backdrop-blur mt-3 h-16 justify-center"
-                    onsubmit="return false"
-                    wf-onsubmit="post('todo.addTodo')"
-                    wf-if="state.todo.newTodoIncludeNote"
-                  >
+                      <div class="nf nf-cod-note"></div>
+                    </label>
                     <input
-                      id="todo-note-text"
-                      type="text"
-                      placeholder="Add a note for this task"
-                      class="w-full rounded-lg bg-transparent px-3 py-2 text-sm font-light text-white placeholder-white/70 focus:outline-none"
+                      type="date"
+                      class="hidden w-full rounded-lg bg-white/20 px-3 py-2 text-sm text-white focus:outline-none lg:block lg:w-36"
                       value=""
-                      wf-value="state.todo.newTodoNote"
-                      wf-onfocus="await post('todo.showQuickNoteDetails')"
-                      wf-onblur="await post('todo.maybeHideQuickNoteDetails')"
+                      wf-value="state.todo.newTodoDueDate"
                     />
-                  </form>
-                </div>
+                  </div>
+                </form>
+                <form
+                  class="flex flex-col gap-4 rounded-2xl bg-white/20 px-6 py-4 text-left shadow-inner backdrop-blur mt-3 h-16 justify-center"
+                  onsubmit="return false"
+                  wf-onsubmit="post('todo.addTodo')"
+                  wf-if="state.todo.newTodoIncludeNote"
+                >
+                  <input
+                    id="todo-note-text"
+                    type="text"
+                    placeholder="Add a note for this task"
+                    class="w-full rounded-lg bg-transparent px-3 py-2 text-sm font-light text-white placeholder-white/70 focus:outline-none"
+                    value=""
+                    wf-value="state.todo.newTodoNote"
+                    wf-onfocus="await post('todo.showQuickNoteDetails')"
+                    wf-onblur="await post('todo.maybeHideQuickNoteDetails')"
+                  />
+                </form>
               </div>
             </div>
 
@@ -193,7 +191,9 @@
           </div>
         </div>
       </div>
-      <header class="sticky bottom-0 z-10 border-t border-slate-200 bg-white">
+      <header
+        class="sticky bottom-0 z-10 border-t border-slate-200 bg-white !hidden"
+      >
         <div
           class="flex max-w-3xl items-center px-10 py-4 justify-center mx-auto"
         >
