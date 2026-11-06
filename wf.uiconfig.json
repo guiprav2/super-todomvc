@@ -4,11 +4,18 @@
   "betterscroll": true,
   "nativeExport": {
     "target": "linux-x64",
-    "width": 1280,
-    "height": 800,
+    "width": 768,
+    "height": 704,
     "startMaximized": false,
     "rememberDimensions": true,
-    "borderless": false,
-    "dragAnywhere": false
+    "borderless": true,
+    "dragAnywhere": true,
+    "resizable": "none",
+    "orientation": "auto",
+    "documentClassNames": {
+      "linux-x64": "rounded-3xl",
+      "win-x64": "",
+      "android-arm64": ""
+    }
   }
 }
