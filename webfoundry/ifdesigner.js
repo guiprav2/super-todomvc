@@ -1,14 +1,90 @@
 import BiMap from './bimap.js';
-import Boo from 'https://esm.sh/@camilaprav/boo@1.0.6';
+import Boo from 'https://esm.run/@camilaprav/boo@1.0.6';
 import d from './dominant.js';
-import htmlsnap from 'https://esm.sh/@camilaprav/htmlsnap@0.0.16';
-import morphdom from 'https://esm.sh/morphdom';
+import htmlsnap from 'https://esm.run/@camilaprav/htmlsnap@0.0.16';
+import morphdom from 'https://esm.run/morphdom';
 
 window.state = { map: new BiMap(), cursors: {}, overlays: {} };
 let wforigin = new URL(location.href).searchParams.get('isolate') || location.origin;
 if (/^(\w+\.)?(webfoundry.app|webfoundry\d+\.netlify\.app|localhost)$/.test(wforigin)) throw new Error(`Bad isolation origin`);
 let post = data => parent.postMessage({ path: null, ...data, path: location.pathname.slice(1).split('/').slice(3).join('/') }, wforigin);
 let components = {};
+
+/** Ensure Tailwind sees native:/desktop:/mobile: even if the project's head.js is stale. */
+function ensurePlatformVariantStyles() {
+  if (document.querySelector('style.wf-platform-variants')) return;
+  let style = document.createElement('style');
+  style.type = 'text/tailwindcss';
+  style.className = 'wf-platform-variants';
+  style.textContent = [
+    '@custom-variant native (html:where([wf-native-preview]) &);',
+    '@custom-variant desktop (html[wf-desktop-preview] &);',
+    '@custom-variant mobile (html[wf-mobile-preview] &);',
+    '',
+  ].join('\n');
+  document.head.append(style);
+}
+
+/** Gate native:/desktop:/mobile: via html preview attributes. Parent posts (isolate is cross-origin). */
+function applyPlatformPreview(mode) {
+  ensurePlatformVariantStyles();
+  let root = document.documentElement;
+  root.removeAttribute('wf-desktop-preview');
+  root.removeAttribute('wf-mobile-preview');
+  root.removeAttribute('wf-native-preview');
+  if (mode === 'desktop') {
+    root.setAttribute('wf-desktop-preview', '');
+    root.setAttribute('wf-native-preview', '');
+  } else if (mode === 'mobile') {
+    root.setAttribute('wf-mobile-preview', '');
+    root.setAttribute('wf-native-preview', '');
+  }
+}
+
+function normalizePlatformPreview(value) {
+  if (value === 'desktop' || value === 'mobile') return value;
+  if (value === true || value === 'true') return 'desktop';
+  return 'off';
+}
+
+// Like el.scrollIntoView(), but only scrolls containers inside this document (ending at this
+// frame's own viewport). scrollIntoView() also scrolls every ancestor window, which yanks the
+// editor and any page embedding it (e.g. the landing page demo).
+function scrollWithinFrame(el, { block = 'nearest', inline = 'nearest' } = {}) {
+  let root = document.scrollingElement || document.documentElement;
+  let canScroll = (x, axis) => {
+    let cs = getComputedStyle(x);
+    let overflow = axis === 'y' ? cs.overflowY : cs.overflowX;
+    return /^(auto|scroll|overlay)$/.test(overflow) && (axis === 'y' ? x.scrollHeight > x.clientHeight : x.scrollWidth > x.clientWidth);
+  };
+  // body's overflow propagates to the viewport unless <html> sets its own, so it only scrolls itself in that case.
+  let bodyIsOwnScroller = getComputedStyle(document.documentElement).overflow !== 'visible';
+  let scrollers = [];
+  for (let x = el.parentElement; x && x !== root; x = x.parentElement) {
+    if (x === document.body && !bodyIsOwnScroller) continue;
+    if (canScroll(x, 'y') || canScroll(x, 'x')) scrollers.push(x);
+  }
+  scrollers.push(root);
+  let delta = (start, end, viewStart, viewEnd, mode) => {
+    if (mode === 'center') return (start + end) / 2 - (viewStart + viewEnd) / 2;
+    if (start >= viewStart && end <= viewEnd) return 0;
+    if (start < viewStart || end - start > viewEnd - viewStart) return start - viewStart;
+    return end - viewEnd;
+  };
+  for (let sc of scrollers) {
+    let r = el.getBoundingClientRect();
+    let view;
+    if (sc === root) view = { top: 0, left: 0, bottom: innerHeight, right: innerWidth };
+    else {
+      let b = sc.getBoundingClientRect();
+      let top = b.top + sc.clientTop, left = b.left + sc.clientLeft;
+      view = { top, left, bottom: top + sc.clientHeight, right: left + sc.clientWidth };
+    }
+    sc.scrollTop += delta(r.top, r.bottom, view.top, view.bottom, block);
+    sc.scrollLeft += delta(r.left, r.right, view.left, view.right, inline);
+  }
+}
+
 addEventListener('message', async ev => {
   let { type, ...rest } = ev.data;
   if (type !== 'state' || ev.origin !== wforigin) return;
@@ -17,11 +93,21 @@ addEventListener('message', async ev => {
       let first = state.map.get(rest.cursors[state.collab.uid]?.at?.(-1));
       let rect = first?.getBoundingClientRect?.();
       let visible = rect && rect.top >= 20 && rect.bottom <= innerHeight - 20;
-      !visible && first?.scrollIntoView?.({ block: rect.height <= innerHeight ? 'center' : 'nearest', inline: rect.width <= innerWidth ? 'center' : 'nearest' });
+      !visible && first && scrollWithinFrame(first, { block: rect.height <= innerHeight ? 'center' : 'nearest', inline: rect.width <= innerWidth ? 'center' : 'nearest' });
     };
     state.collab.uid === 'master' ? scroll() : setTimeout(scroll, 500);
   }
+  if ('platformPreview' in rest) applyPlatformPreview(normalizePlatformPreview(rest.platformPreview));
+  else if ('nativePreview' in rest) applyPlatformPreview(rest.nativePreview ? 'desktop' : 'off');
   Object.assign(state, rest);
+});
+addEventListener('message', async ev => {
+  if (ev.data.type !== 'platformPreview' || ev.origin !== wforigin) return;
+  applyPlatformPreview(normalizePlatformPreview(ev.data.mode));
+});
+addEventListener('message', async ev => {
+  if (ev.data.type !== 'nativePreview' || ev.origin !== wforigin) return;
+  applyPlatformPreview(ev.data.enabled ? 'desktop' : 'off');
 });
 addEventListener('message', async ev => {
   if (ev.data.type !== 'update' || ev.origin !== wforigin) return;
@@ -97,6 +183,11 @@ let snap = () => {
   state.map = map;
   let doc = new DOMParser().parseFromString(snap, 'text/html');
   doc.querySelectorAll('.wf-cursor').forEach(x => x.remove());
+  // Runtime-only platform preview chrome — never persist into the authored page.
+  doc.documentElement.removeAttribute('wf-desktop-preview');
+  doc.documentElement.removeAttribute('wf-mobile-preview');
+  doc.documentElement.removeAttribute('wf-native-preview');
+  doc.querySelectorAll('style.wf-platform-variants, style.wf-native-variant').forEach(x => x.remove());
   for (let x of doc.querySelectorAll('[wf-component]')) {
     let props = x.getAttribute('wf-props') || '';
     if (props) props = ` wf-props="${props.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}"`;
