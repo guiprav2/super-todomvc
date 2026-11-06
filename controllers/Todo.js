@@ -101,5 +101,14 @@ export default class Todo {
         this.state.quickNoteExpanded = false;
       }
     },
+
+    // Desktop-only window controls (Nasty native host); inert in the browser.
+    minimizeWindow: () => {
+      if (typeof window.minimize === 'function') window.minimize();
+    },
+
+    closeWindow: () => {
+      if (typeof window.minimize === 'function') window.close();
+    },
   };
 }
